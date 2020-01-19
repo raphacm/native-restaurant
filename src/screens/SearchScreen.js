@@ -1,30 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, FlatList } from "react-native";
 import SearchBar from "../components/SearchBar";
-import axios from "../api/yelp";
+import useBusinesses from "../hooks/useBusinesses";
 
 const SearchScreen = () => {
   const [term, setTerm] = useState("");
-  const [results, setResults] = useState([]);
-  const [errorMessage, setErrorMessage] = useState("");
-
-  const searchApi = async () => {
-    try {
-      const response = await axios.get("/search", {
-        params: {
-          term,
-          location: "Rio de Janeiro",
-          limit: 50
-        }
-      });
-
-      setResults(response.data.businesses);
-      setErrorMessage("");
-    } catch (err) {
-      setResults([]);
-      setErrorMessage("Something went wrong. Try again later!");
-    }
-  };
+  const [searchApi, results, errorMessage] = useBusinesses();
 
   const onTermSubmit = term => {
     searchApi(term);
