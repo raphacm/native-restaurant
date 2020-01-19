@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, FlatList } from "react-native";
+import React, { useState } from "react";
+import { View, Text } from "react-native";
 import SearchBar from "../components/SearchBar";
 import BusinessesList from "../components/BusinessesList";
 import useBusinesses from "../hooks/useBusinesses";
