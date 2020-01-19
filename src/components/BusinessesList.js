@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Text, FlatList, StyleSheet, Image } from "react-native";
+import { View, Text, FlatList, StyleSheet } from "react-native";
+import BusinessDetail from "./BusinessDetail";
 
 const BusinessesList = ({ results = [], title }) => {
   return (
@@ -7,15 +8,10 @@ const BusinessesList = ({ results = [], title }) => {
       <Text style={styles.title}>{title}</Text>
       <FlatList
         horizontal
-        style={styles.list}
+        showsHorizontalScrollIndicator={false}
         keyExtractor={results => results.id}
         data={results}
-        renderItem={({ item }) => (
-          <View style={styles.itemList}>
-            <Image style={styles.imageList} source={{ uri: item.image_url }} />
-            <Text style={styles.itemTitle}>{item.name}</Text>
-          </View>
-        )}
+        renderItem={({ item }) => <BusinessDetail {...item} />}
       />
     </View>
   );
@@ -23,25 +19,12 @@ const BusinessesList = ({ results = [], title }) => {
 
 const styles = StyleSheet.create({
   listContainer: {
-    marginVertical: 10
+    marginBottom: 10
   },
   title: {
     fontSize: 18,
     fontWeight: "bold",
-    marginHorizontal: 20
-  },
-  itemList: {
-    margin: 0,
-    marginHorizontal: 20
-  },
-  imageList: {
-    width: 250,
-    height: 150,
-    marginVertical: 10
-  },
-  itemTitle: {
-    fontSize: 14,
-    fontWeight: "bold"
+    marginLeft: 15
   }
 });
 
