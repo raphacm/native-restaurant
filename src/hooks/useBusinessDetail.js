@@ -11,7 +11,7 @@ export default id => {
       setResult(response.data);
       setErrorMessage("");
     } catch (error) {
-      setErrorMessage("Something went wrong! Try again later!" + error);
+      setErrorMessage("Something went wrong! Try again later!");
       setResult("");
     }
   };
